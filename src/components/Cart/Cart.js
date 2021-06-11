@@ -1,6 +1,7 @@
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
+
 const Cart = (props) => {
     const cart = props.cart
     console.log(cart)
@@ -8,7 +9,7 @@ const Cart = (props) => {
     let total = 0
     for(let i =0;i<cart.length;i++){
         const product =cart[i];
-        total=total+product.price;
+        total=total+product.price * product.quantity;
     }
 
     let shipping =0;
@@ -30,12 +31,17 @@ const Cart = (props) => {
     }
     return (
         <div>
-            <h4>order summary</h4>
+            <h4 className='text-danger'>order summary</h4>
             <p>items order:{cart.length}</p>
             <p>product price{ formatNumber(total)}</p>
             <p><small> Shipping Cost:{shipping}</small> </p>
             <p><small>tax+vat :{tax}</small> </p>
             <p> total price:{grandTotal} </p>
+            {
+                props.children
+            }
+            
+          
             
             
         </div>
